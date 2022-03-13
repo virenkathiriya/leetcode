@@ -4,8 +4,10 @@ public:
         if(v.size() == 1) return;
         int N = v.size();
         int i = N - 2, j = N - 1;
+        // finding the break point
         while(i >= 0 && v[i] >= v[i + 1]) i--;
         if(i >= 0) {
+            // next value that will replace the breakpoint
             while(j >= i && v[i] >= v[j]) j--;
             swap(v[i], v[j]);
         } else {
