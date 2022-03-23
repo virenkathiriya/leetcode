@@ -2,39 +2,25 @@ class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
         vector<int> f1(26, 0), f2(26, 0);
-        for (char &c: s1) f1[c - 'a']++;
+        int N = s2.size(), M = s1.size();
+        if (N < M) return false;
+        for (int i = 0; i < M; ++i) {f1[s1[i] - 'a']++, f2[s2[i] - 'a']++;}
         
-        int l = 0, r = 0, N = s2.size();
-        while (l < N && r < N) {
-            while (r < N && f2[s2[r] - 'a'] < f1[s2[r] - 'a']) {
-                f2[s2[r] - 'a']++;
-                r++;
-            }
-            bool ok = true;
-            for (char &c: s1) {
-                ok &= (f1[c - 'a'] == f2[c - 'a']);
-                if (!ok) break;
-            }
-            if (ok) return true;
-            if (r < N) {
-                if (f1[s2[r] - 'a'] > 0) {
-                    while (l < N && s2[l] != s2[r]) {
-                        f2[s2[l] - 'a']--;
-                        l++;
-                    }
-                    if (l < N && s2[l] == s2[r]) {
-                        f2[s2[l] - 'a']--;
-                        l++;
-                    }
-                } else {
-                    r++;
-                    while (l < N && l < r) {
-                        if (f2[s2[l] - 'a'] > 0) f2[s2[l] - 'a']--;
-                        l++;
-                    }
-                }
-            }
+        int cnt = 0;
+        for (int i = 0; i < 26; i++) cnt += (f1[i] == f2[i]);
+        
+        for (int i = 0; i + M < N; i++) {
+            int r = s2[i + M] - 'a';
+            int l = s2[i] - 'a';
+            
+            if (cnt == 26) return true;
+            f2[r]++;
+            if (f2[r] == f1[r]) cnt++;
+            else if (f2[r] == f1[r] + 1) cnt--;
+            f2[l]--;
+            if (f2[l] == f1[l]) cnt++;
+            else if (f2[l] == f1[l] - 1) cnt--;
         }
-        return false;
+        return cnt == 26;
     }
 };
