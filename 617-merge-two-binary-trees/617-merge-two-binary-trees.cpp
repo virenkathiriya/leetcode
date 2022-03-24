@@ -15,9 +15,27 @@ public:
         if (!root1) return root2;
         if (!root2) return root1;
         
-        root1 -> val += root2 -> val;
-        root1 -> left = mergeTrees(root1->left, root2->left);
-        root1 -> right = mergeTrees(root1->right, root2->right);
+        stack<pair<TreeNode*, TreeNode*>> st;
+        st.push({root1, root2});
+        while (!st.empty()) {
+            auto it = st.top();
+            st.pop();
+            // first will always have value or null(in case both are null);
+            if (it.first == NULL || it.second == NULL) continue; 
+            
+            it.first -> val += it.second -> val;
+            if (!it.first -> left) {
+                it.first -> left = it.second -> left;
+            } else {
+                st.push({it.first -> left, it.second -> left});
+            }
+            
+            if (!it.first -> right) {
+                it.first -> right = it.second -> right;
+            } else {
+                st.push({it.first -> right, it.second -> right});
+            }
+        }
         return root1;
     }
 };
