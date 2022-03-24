@@ -1,29 +1,35 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& g, int t) {
-        int i = 0, j = 0;
         int n = g.size(), m = g[0].size();
-        while (i < n && j < m) {
-            if (g[i][j] == t) return true;
-            if (g[i][j] > t) return false;
-            if (i + 1 < n) {
-                if (g[i + 1][j] > t) { 
-                    j++;
-                } else {
-                    i++;
-                }
-                continue;
+        
+        // find row through binary search
+        int l = 0, r = n - 1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (g[m][0] == t) return true;
+            if (g[m][0] > t) {
+                r = m - 1;
+            } else {
+                l = m + 1;
             }
-            if (j + 1 < m) {
-                if (g[i][j + 1] > t) { 
-                    return false;
-                } else {
-                    j++;
-                    continue;
-                }
-            }
-            return false;
         }
+        
+        if (r < 0) return false;
+        
+        // r will be our row;
+        int row = r;
+        l = 0, r = m - 1;
+         while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (g[row][m] == t) return true;
+            if (g[row][m] > t) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+    
         return false;
     }
 };
