@@ -13,18 +13,18 @@ class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         if (!root) return {};
-        queue<TreeNode*> q[2];
-        q[0].push(root);
+        queue<TreeNode*> q;
+        q.push(root);
         vector<vector<int>> ans;
-        while (!q[0].empty() || !q[1].empty()) {
+        while (!q.empty()) {
+            int s = q.size();
             vector<int> t;
-            int bit = !q[0].empty() ? 0 : 1;
-            while(!q[bit].empty()) {
-                TreeNode *cur = q[bit].front();
-                q[bit].pop();
+            for (int i = 0; i < s; i++) {
+                TreeNode *cur = q.front();
+                q.pop();
                 t.push_back(cur -> val);
-                if (cur -> left) q[!bit].push(cur -> left);
-                if (cur -> right) q[!bit].push(cur -> right);
+                if (cur -> left) q.push(cur -> left);
+                if (cur -> right) q.push(cur -> right);
             }
             ans.push_back(t);
         }
