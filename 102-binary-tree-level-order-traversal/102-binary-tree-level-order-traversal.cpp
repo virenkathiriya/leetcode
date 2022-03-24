@@ -23,8 +23,8 @@ public:
                 TreeNode *cur = q[bit].front();
                 q[bit].pop();
                 t.push_back(cur -> val);
-                if (cur -> left) q[bit ^ 1].push(cur -> left);
-                if (cur -> right) q[bit ^ 1].push(cur -> right);
+                if (cur -> left) q[!bit].push(cur -> left);
+                if (cur -> right) q[!bit].push(cur -> right);
             }
             ans.push_back(t);
         }
