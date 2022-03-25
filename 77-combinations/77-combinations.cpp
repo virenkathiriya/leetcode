@@ -7,15 +7,14 @@ public:
     }
     
     void rec(int n, int k, int cur_ptr, vector<int> cur_combination, vector<vector<int>> &ans) {
-        int size = cur_combination.size();
-        if (size == k) {
+        if (k == 0) {
             ans.push_back(cur_combination);
             return;
         }
         
-        if (k - size <= n - cur_ptr)
+        if (k <= n - cur_ptr)
             rec(n, k, cur_ptr + 1, cur_combination, ans);
         cur_combination.push_back(cur_ptr);
-        rec(n, k, cur_ptr + 1, cur_combination, ans);
+        rec(n, k - 1, cur_ptr + 1, cur_combination, ans);
     }
 };
