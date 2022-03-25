@@ -11,22 +11,9 @@
  */
 class Solution {
 public:
-    long long prev = LLONG_MIN; 
-    bool valid = true;
-    void dfs(TreeNode* root) {
-        if(root && valid) {
-            dfs(root -> left);
-            if (root -> val <= prev)  {
-                valid = false;
-                return;
-            }
-            prev = root -> val;
-            dfs(root -> right);
-        }
-    }
-    bool isValidBST(TreeNode* root) {
+    bool isValidBST(TreeNode* root, long mx = LONG_MAX, long mn = LONG_MIN) {
         if (!root) return true;
-        dfs(root);
-        return valid;
+        if (root -> val >= mx || root -> val <= mn) return false;
+        return isValidBST(root -> left, root -> val, mn) && isValidBST(root -> right, mx, root -> val);
     }
 };
