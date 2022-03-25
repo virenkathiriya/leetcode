@@ -2,17 +2,20 @@ class Solution {
 public:
     vector<vector<int>> combine(int n, int k) {
         vector<vector<int>> ans;
-        for (int i = 0; i < (1 << n); i++) {
-            if (__builtin_popcount(i) == k) {
-                vector<int> t;
-                for (int j = 0; j < n; j++) {
-                    if ((i & (1 << j)) != 0) {
-                        t.push_back(j + 1);
-                    }
-                }
-                ans.push_back(t);
-            }
-        }
+        rec(n, k, 1, {}, ans);
         return ans;
+    }
+    
+    void rec(int n, int k, int cur_ptr, vector<int> cur_combination, vector<vector<int>> &ans) {
+        int size = cur_combination.size();
+        if (size == k) {
+            ans.push_back(cur_combination);
+            return;
+        }
+        
+        if (k - size <= n - cur_ptr)
+            rec(n, k, cur_ptr + 1, cur_combination, ans);
+        cur_combination.push_back(cur_ptr);
+        rec(n, k, cur_ptr + 1, cur_combination, ans);
     }
 };
