@@ -11,12 +11,16 @@ public:
             else l = m + 1;
         }
         int up = (r >= 0 && a[r] == target) ? r : -1;
-        int low = lower_bound(a.begin(), a.end(), target) - a.begin();
-        if(low >= 0 && low < a.size()) {
-            if(a[low] != target) low = -1;
-        } else {
-            low = -1;
+        
+        // int low = lower_bound(a.begin(), a.end(), target) - a.begin();
+        l = 0, r = n- 1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (a[m] >= target) r = m - 1;
+            else l = m + 1; 
         }
+        
+        int low = (l >= 0 && l < n && a[l] == target) ? l : -1;
         return {low, up};
     }
 };
