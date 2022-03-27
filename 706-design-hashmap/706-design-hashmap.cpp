@@ -1,6 +1,6 @@
 class MyHashMap {
 public:
-    static const int size = 950;
+    static const int size = 2000;
     vector<vector<int>> store[size];
     MyHashMap() {
     }
