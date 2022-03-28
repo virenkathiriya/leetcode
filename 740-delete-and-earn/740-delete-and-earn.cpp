@@ -1,7 +1,7 @@
 class Solution {
 public:
     int deleteAndEarn(vector<int>& v) {
-        map<int, int> mp;
+        unordered_map<int, int> mp;
         int mx = 10001;
         for (int &x: v) mp[x]++;
         int i1 = mp[1], i2 = 0;
