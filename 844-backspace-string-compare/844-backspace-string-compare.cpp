@@ -24,12 +24,12 @@ public:
             if (i < 0 && j < 0) break;
             
             if (i >= 0 && j >= 0) {
-                ok &= (s[i] == t[j]); i--; j--;
+                if (s[i] != t[j]) return false;
+                i--; j--;
             } else {
-                ok = false;
-                break;
+                return false;
             }
         }
-        return ok && (i == -1 && j == -1);
+        return true;
     }
 };
