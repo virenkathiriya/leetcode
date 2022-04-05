@@ -7,7 +7,7 @@ public:
         return ans;
     }
     
-    void f(vector<int> v, vector<vector<int>> &ans, int l, int r) {
+    void f(vector<int> &v, vector<vector<int>> &ans, int l, int r) {
         if (l == r) {
             ans.push_back(v);
             return;
