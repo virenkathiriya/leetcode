@@ -1,25 +1,15 @@
 class Solution {
 public:
-    int lengthOfLIS(vector<int>& v) {
-        int n = v.size();
-        vector<int> seq(1, v[0]);
-        for (int i = 1; i < n; i++) {
-            if (seq.back() <= v[i]) seq.push_back(v[i]);
-            else {
-                *upper_bound(seq.begin(), seq.end(), v[i]) = v[i];
-            }
-        }
-        return seq.size();
-    }
-    
     int kIncreasing(vector<int>& v, int k) {
         int n = v.size();
         int ans = 0;
         for (int i = 0; i < k; i++) {
-            vector<int> a;
-            for (int j = i; j < n; j += k) a.push_back(v[j]);
-            ans += (a.size() - lengthOfLIS(a));
+            vector<int> seq(1, v[i]);
+            for (int j = i + k; j < n; j += k) 
+                if (seq.back() <= v[j]) seq.push_back(v[j]);
+                else *upper_bound(seq.begin(), seq.end(), v[j]) = v[j];
+            ans += seq.size();
         }
-        return ans;
+        return n - ans;
     }
 };
