@@ -11,7 +11,8 @@ public:
         for (int i = 0; i < 26; i++) {
             if (l[i] > f[i]) {
                 vector<bool> b(26, false); 
-                for (int j = f[i] + 1; j < l[i]; j++) b[s[j] - 'a'] = true;
+                int cnt = 0;
+                for (int j = f[i] + 1; j < l[i]; j++) {if (!b[s[j] - 'a']) {b[s[j] - 'a'] = true; cnt++;} if(cnt >= 26) break;}
                 ans += accumulate(b.begin(), b.end(), 0);
             }
         }
