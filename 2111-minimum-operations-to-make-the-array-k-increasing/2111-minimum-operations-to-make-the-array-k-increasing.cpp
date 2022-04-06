@@ -6,12 +6,7 @@ public:
         for (int i = 1; i < n; i++) {
             if (seq.back() <= v[i]) seq.push_back(v[i]);
             else {
-                auto up = upper_bound(seq.begin(), seq.end(), v[i]);
-                if (up == seq.end()) {
-                    seq.push_back(v[i]);
-                } else {
-                    *up = v[i];
-                }
+                *upper_bound(seq.begin(), seq.end(), v[i]) = v[i];
             }
         }
         return seq.size();
