@@ -2,13 +2,6 @@
 SELECT 
     e.name Employee
 FROM
-    Employee e
+    Employee e, Employee m
 WHERE 
-    e.salary > (
-        SELECT 
-            m.Salary 
-        FROM 
-            Employee m
-        WHERE 
-            e.managerId = m.id
-    );
+    e.managerId = m.id and e.salary > m.salary;
