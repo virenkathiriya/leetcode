@@ -10,9 +10,9 @@ public:
         int ans = 0;
         for (int i = 0; i < 26; i++) {
             if (l[i] > f[i]) {
-                unordered_set<int> st;
-                for (int j = f[i] + 1; j < l[i]; j++) st.insert(s[j]);
-                ans += st.size();
+                vector<bool> b(26, false); 
+                for (int j = f[i] + 1; j < l[i]; j++) b[s[j] - 'a'] = true;
+                ans += accumulate(b.begin(), b.end(), 0);
             }
         }
         return ans;
