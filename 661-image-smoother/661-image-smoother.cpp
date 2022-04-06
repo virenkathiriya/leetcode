@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<int>> imageSmoother(vector<vector<int>>& g) {
         int n = g.size(), m = g[0].size();
-        vector<vector<int>> ans(n, vector<int> (m, 0));
+        vector<vector<int>> ans = g;
         vector<vector<int>> di = {{0, 1}, {0, 0}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}, {1, -1}, {1, 0}, {1, 1}};
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -13,9 +13,10 @@ public:
                     cnt++;
                     sum += g[X][Y];
                 }
-                ans[i][j] = sum / cnt;
+                ans[i][j] |= (sum / cnt) << 8;
             }
         }
+        for (auto &y: ans) for (int &x: y) x >>= 8; 
         return ans;
     }
 };
