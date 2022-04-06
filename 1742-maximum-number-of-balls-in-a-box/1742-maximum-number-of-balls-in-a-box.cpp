@@ -1,7 +1,7 @@
 class Solution {
 public:
     int countBalls(int l, int r) {
-        unordered_map<int, int> mp;
+        vector<int> mp(50, 0);
         int ans = 0;
         for (int i = l; i <= r; i++) {
             int sum = 0;
