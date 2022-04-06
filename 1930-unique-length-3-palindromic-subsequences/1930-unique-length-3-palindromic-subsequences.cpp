@@ -10,7 +10,7 @@ public:
         int ans = 0;
         for (int i = 0; i < 26; i++) {
             if (l[i] > f[i]) {
-                set<int> st;
+                unordered_set<int> st;
                 for (int j = f[i] + 1; j < l[i]; j++) st.insert(s[j]);
                 ans += st.size();
             }
