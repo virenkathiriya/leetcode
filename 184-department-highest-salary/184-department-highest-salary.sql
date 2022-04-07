@@ -7,4 +7,12 @@ FROM
     Employee e JOIN Department d
     on e.departmentId = d.id
 WHERE 
-    e.salary = (SELECT MAX(ee.salary) FROM EMPLOYEE ee WHERE e.departmentId = ee.departmentId);
+    (e.departmentId, e.Salary) 
+IN (
+    SELECT 
+        DepartmentId, 
+        MAX(Salary) 
+    FROM 
+        EMPLOYEE 
+    GROUP BY DepartmentId
+);
