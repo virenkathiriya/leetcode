@@ -12,7 +12,11 @@ public:
         dp[0] = 0;
     
         for (int i = 1; i < n; i++) {
-            for (int j = 1; j <= A; j++) {
+            for (int j = c[i]; j <= A; j++) {
+                if (c[i] > A) {
+                    i = n;
+                    break;
+                }
                 if (j >= c[i] && dp[j - c[i]] != INT_MAX)
                     dp[j] = min(dp[j - c[i]] + 1, dp[j]);
             }
