@@ -11,11 +11,12 @@ public:
                 dp[i][j] = dp[i][j - 1] + dp[i - 1][j] - dp[i - 1][j - 1] + g[i][j];
             }
         } 
+        pair<int, int> tr, bl, tl;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                pair<int, int> tr = {max(i - k - 1, -1), min(m - 1, j + k)}; 
-                pair<int, int> bl = {min(n - 1, i + k), max(-1, j - k - 1)}; 
-                pair<int, int> tl = {max(i - k - 1, -1), max(j - k - 1, -1)};
+                tr = {max(i - k - 1, -1), min(m - 1, j + k)}; 
+                bl = {min(n - 1, i + k), max(-1, j - k - 1)}; 
+                tl = {max(i - k - 1, -1), max(j - k - 1, -1)};
                 g[i][j] = dp[min(n - 1, i + k)][min(m - 1,  j + k)];
                 if (tr.first >= 0 && tr.second < m) g[i][j] -= dp[tr.first][tr.second];
                 if (bl.second >= 0 && bl.first < n) g[i][j] -= dp[bl.first][bl.second];
