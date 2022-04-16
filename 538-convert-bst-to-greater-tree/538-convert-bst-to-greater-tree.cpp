@@ -13,8 +13,7 @@ class Solution {
 public:
     int f(TreeNode* u, int sum) {
         if(!u) return sum;
-        u -> val += f(u -> right, sum);
-        return f (u -> left, u -> val);
+        return f (u -> left, u -> val += f(u -> right, sum));
     }
     TreeNode* convertBST(TreeNode* root) {
         f (root, 0);
