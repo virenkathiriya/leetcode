@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    int ans = -1, cnt = 0;
+    int ans = -1;
     int kthSmallest(TreeNode* root, int k) {
         f(root, k);
         return ans;
@@ -20,8 +20,8 @@ public:
     void f(TreeNode* u, int &k) {
         if (u) {
             f(u -> left, k);
-            cnt++;
-            if (cnt == k) ans = u -> val;
+            k--;
+            if (!k) ans = u -> val;
             f(u -> right, k);
         }
     }
