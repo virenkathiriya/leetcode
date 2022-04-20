@@ -8,7 +8,6 @@ public:
             if (v[m] > target) r = m - 1;
             else l = m + 1;
         }
-        cout << l << " " << r << "\n";
         return l == n ? v[0]: v[l];
     }
 };
