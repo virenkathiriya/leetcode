@@ -9,25 +9,22 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        if (!head) return NULL;
-        ListNode *f, *s;
-        f = head;
-        s = head;
-        bool exist = false;
-        while (f -> next && f -> next -> next) {
+        ListNode *f = head, *s = head;
+        if (!f || !f -> next) return NULL;
+        f = f -> next -> next;
+        s = s -> next;
+        while (f != s && f && f -> next){
             f = f -> next -> next;
             s = s -> next;
-            if (f == s) {
-                exist = true;
-                break;
-            }
         }
-        if (!exist) return NULL;
-        s = head;
-        while (s != f) {
-            s = s -> next;
+        
+        if (!f || !s || !f -> next) return NULL;
+        
+        f = head;
+        while (f != s) {
             f = f -> next;
+            s = s -> next;
         }
-        return s;
+        return f;
     }
 };
