@@ -20,14 +20,15 @@ public:
 
 class Solution {
 public:
-    vector<int> ans;
-    void dfs(Node* u) {
-        if(!u) return;
-        ans.push_back(u -> val);
-        for (Node *v: u -> children) dfs(v);
+    void f(Node* u, vector<int> &x) {
+        if (!u) return;
+        x.push_back(u -> val);
+        for (Node* v: u -> children) {
+            f(v, x);
+        }
     }
-    vector<int> preorder(Node* root) {
-        dfs(root);
-        return ans;
+    vector<int> preorder(Node* root, vector<int> x = {}) {
+        f(root, x);
+        return x;
     }
 };
