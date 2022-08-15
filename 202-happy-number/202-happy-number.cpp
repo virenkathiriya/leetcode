@@ -1,19 +1,21 @@
 class Solution {
 public:
-    bool isHappy(int n) {
-        map<int, bool> seen;
-        while (true) {
-            int sum = 0;
-            while (n) {
-                int d = n % 10;
-                sum += (d * d);
-                n /= 10;
-            }
-            n = sum;
-            if (seen[n]) return false;
-            if (n == 1) return true;
-            seen[n] = true;
+    long long f(long long n) {
+        long long sum = 0;
+        while (n > 0) {
+            int x = n % 10;
+            sum += x * x;
+            n /= 10;
         }
-        return false;
+        return sum;
+    }
+    bool isHappy(int n) {
+        map<long long, bool> mp;
+        long long ans = f(n);
+        while (!mp[ans] && ans != 1) {
+            mp[ans] = true;
+            ans = f(ans);
+        }
+        return ans == 1;
     }
 };
