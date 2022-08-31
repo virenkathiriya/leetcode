@@ -14,26 +14,26 @@ public:
     bool isLeaf(TreeNode* node) {
         return node && !node -> left && !node -> right;
     }
-    void dfs(TreeNode* node, int sum, vector<int> cur, vector<vector<int>>& ans, int t) {
-        if (!node) return;
-        sum += node -> val;
-        cur.push_back(node -> val);
+    
+    void dfs(TreeNode* node, int sum, vector<int>& cur, vector<vector<int>>& ans, int t) {
+        if (node) {
+            sum += node -> val;
+            cur.push_back(node -> val);
         
-        if (sum == t && isLeaf(node)) {
-            ans.push_back(cur);
-            return;
-        } 
-        
-        if (node -> left) {
-            dfs(node -> left, sum, cur, ans, t);
-        } 
-        if (node -> right) {
-            dfs(node -> right, sum, cur, ans, t);
+            if (sum == t && isLeaf(node)) {
+                ans.push_back(cur);
+            } else {
+                dfs(node -> left, sum, cur, ans, t);
+                dfs(node -> right, sum, cur, ans, t);
+            }
+            cur.pop_back();
         }
+        
     }
     vector<vector<int>> pathSum(TreeNode* root, int t) {
         vector<vector<int>> ans;
-        dfs(root, 0, {}, ans, t);
+        vector<int> cur;
+        dfs(root, 0, cur, ans, t);
         return ans;
     }
 };
