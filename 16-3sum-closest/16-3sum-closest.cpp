@@ -23,6 +23,8 @@ public:
                 // you are getting lesser diff (l + 1 or r - 1) move there
                 if (l1Diff < r1Diff) l++;
                 else r--;
+                
+                if (min(l1Diff, r1Diff) > abs(t - a - b - c)) break;
             }
         }
         return ans;
