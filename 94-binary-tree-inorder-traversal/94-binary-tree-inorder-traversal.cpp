@@ -12,23 +12,25 @@
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
+        TreeNode* cur = root;
         vector<int> ans;
-        TreeNode *cur = root;
         while (cur) {
             if (!cur -> left) {
                 ans.push_back(cur -> val);
                 cur = cur -> right;
             } else {
-                TreeNode *pre = cur -> left;
-                while (pre -> right && pre -> right != cur) pre = pre -> right;
-                
-                if (pre -> right) {
-                    pre -> right = NULL;
+                TreeNode* ptr = cur -> left;
+                // go to far right and put a thread to this.
+                while (ptr -> right && ptr -> right != cur) {
+                    ptr = ptr -> right;
+                }
+                if (!ptr -> right) {
+                    ptr -> right = cur;
+                    cur = cur -> left;
+                } else {
+                    ptr -> right = NULL;
                     ans.push_back(cur -> val);
                     cur = cur -> right;
-                } else {
-                    pre -> right = cur;
-                    cur = cur -> left;
                 }
             }
         }
