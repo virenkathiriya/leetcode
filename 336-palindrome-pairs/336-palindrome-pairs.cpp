@@ -16,7 +16,7 @@ public:
         T* root = new T();
         
         for (int i = 0; i < N; i++) {
-            string s = g[i];
+            string& s = g[i];
             int m = s.size();
             T* it = root;
             for (int j = m - 1; j >= 0; j--) {
@@ -29,7 +29,7 @@ public:
         }
         
         for (int i = 0; i < N; i++) {
-            string s = g[i];
+            string& s = g[i];
             int m = s.size();
             T* it = root;
             for (int j = 0; j < m; j++) {
