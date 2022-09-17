@@ -5,17 +5,14 @@ public:
         return true;
     }
     
-    int f(string &s, int i, int n, vector<int> &dp) {
-        if (i == n) return 0;
-        if (dp[i]) return dp[i];
-        int ans = INT_MAX;
-        for (int j = i; j < n; j++) if (ip(s, i, j)) ans = min(ans, 1 + f(s, j + 1, n, dp));
-        return dp[i] = ans;
-    }
-    
     int minCut(string s) {
-        vector<int> dp(s.size(), 0);
-        f(s, 0, s.size(), dp);
+        int N = s.size();
+        vector<int> dp(N + 1, 0);
+        for (int i = N - 1; i >= 0; --i) {
+            int ans = INT_MAX;
+            for (int j = i; j < N; j++) if (ip(s, i, j)) ans = min(ans, 1 + dp[j + 1]);
+            dp[i] = ans;
+        }
         return dp[0] - 1;
     }
 };
