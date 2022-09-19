@@ -20,7 +20,7 @@ public:
     }
     
     vector<vector<string>> findDuplicate(vector<string>& paths) {
-        map<string, vector<string>> mp;
+        unordered_map<string, vector<string>> mp;
         for (string s: paths) {
             string prefix;
             int N = s.size();
