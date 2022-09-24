@@ -11,16 +11,12 @@
  */
 class Solution {
 public:
-    bool isLeaf(TreeNode* node) {
-        return node && !node -> left && !node -> right;
-    }
-    
     void dfs(TreeNode* node, int sum, vector<int>& cur, vector<vector<int>>& ans, int t) {
         if (node) {
             sum += node -> val;
             cur.push_back(node -> val);
         
-            if (sum == t && isLeaf(node)) {
+            if (sum == t && !node -> left && !node -> right) {
                 ans.push_back(cur);
             } else {
                 dfs(node -> left, sum, cur, ans, t);
