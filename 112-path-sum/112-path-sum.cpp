@@ -11,16 +11,10 @@
  */
 class Solution {
 public:
-    bool ok = false;
-    void f(TreeNode* root, int cur, int t) {
-        if (!root) return;
-        cur += root -> val;
-        if (cur == t && (!root -> left && !root -> right)) {ok = true; return;}
-        f(root -> left, cur, t);
-        f(root -> right, cur, t);
-    }
-    bool hasPathSum(TreeNode* root, int targetSum) {
-        f(root, 0, targetSum);
-        return ok;
+    bool hasPathSum(TreeNode* root, int t) {
+        if (!root) return false;
+        t -= root -> val;
+        if (t == 0 && !root -> left && !root -> right) return true;
+        return hasPathSum(root -> left, t) || hasPathSum(root -> right, t);
     }
 };
