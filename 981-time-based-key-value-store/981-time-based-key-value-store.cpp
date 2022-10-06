@@ -12,12 +12,8 @@ public:
     string get(string key, int timestamp) {
         if (store[key].empty()) return "";
         pair<int, string> p = {timestamp,  ""};
-        auto it = upper_bound(store[key].begin(), store[key].end(), p,  [&](const pair<int, string> &a, const pair<int, string> &b) {
-            return a.first < b.first;
-        });
-        if (it == store[key].begin()) return "";
-        it--;
-        return (*it).second;
+        auto it = upper_bound(store[key].begin(), store[key].end(), p, [&](const pair<int, string> &a, const pair<int, string> &b) { return a.first < b.first; });
+        return (it == store[key].begin()) ? "": (*--it).second;
     }
 };
 
