@@ -1,7 +1,7 @@
 class Solution {
 public:
     int ans = 0;
-    void f(vector<vector<int>>& g, int i, int j, int n, int m, int e) {
+    void f(vector<vector<int>>& g, int i, int j, int& n, int& m, int& e) {
         if (i >= n or j >= m or i < 0 or j < 0 or g[i][j] < 0) return;
         if (g[i][j] == 2) { 
             ans += (e == 0);
