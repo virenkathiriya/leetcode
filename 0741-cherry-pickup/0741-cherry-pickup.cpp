@@ -26,7 +26,7 @@ public:
     
     int cherryPickup(vector<vector<int>>& g) {
         int N = g.size(), M = g[0].size();
-        vector<vector<vector<int>>> dp(N, vector<vector<int>> (N, vector<int> (M, INT_MIN)));
+        vector<vector<vector<int>>> dp(N, vector<vector<int>> (M, vector<int> (M, INT_MIN)));
         return max(0, f(g, dp, 0, 0, 0, N, M));
     }
 };
