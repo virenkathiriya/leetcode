@@ -12,13 +12,14 @@ public:
         for (string &s: words) mp[s]++;
         priority_queue<pair<int, string>, vector<pair<int, string>>, custom_compare> pq;
         for (auto &[key, val]: mp) pq.push({val, key});
-        vector<string> ans;
+        int i = 0;
         while (!pq.empty()) {
             auto it = pq.top();
-            ans.push_back(it.second);
+            words[i++] = it.second;
             pq.pop();
-            if (ans.size() >= k) break;
+            if (i == k) break; 
         }
-        return ans;
+        words.resize(k);
+        return words;
     }
 };
