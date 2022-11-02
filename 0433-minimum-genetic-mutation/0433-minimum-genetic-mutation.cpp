@@ -2,8 +2,8 @@ class Solution {
 public:
     int minMutation(string start, string end, vector<string>& bank) {
         queue<string> q;
-        unordered_map<string, bool> vis;
-        unordered_map<string, bool> bankmap;
+        map<string, bool> vis;
+        map<string, bool> bankmap;
         for (string &s: bank) bankmap[s] = true;
         q.push(start);
         vis[start] = true;
