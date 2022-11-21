@@ -1,5 +1,11 @@
 class Solution {
-public:
+public:   
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+
     int nearestExit(vector<vector<char>>& g, vector<int>& s) {
         int n = g.size(), m = g[0].size();
         queue<pair<int, int>> q;
