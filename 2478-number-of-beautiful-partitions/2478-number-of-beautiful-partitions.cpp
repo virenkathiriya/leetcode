@@ -1,5 +1,11 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
     const int M = 1000000007;
     int mn = 0;
     
