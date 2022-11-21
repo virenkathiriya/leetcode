@@ -7,7 +7,7 @@ public:
         int ans = 0;
         
         q.push({s[0], s[1]});
-        g[s[0]][s[1]] = 'V';
+        g[s[0]][s[1]] = 1;
         while (!q.empty()) {
             int sz = q.size();
             ans++;
@@ -22,7 +22,7 @@ public:
                         continue;
                     }
                     if (g[x][y] == '.') {
-                        g[x][y] = 'V';
+                        g[x][y] = 1;
                         q.push({x, y});
                     }
                 } 
