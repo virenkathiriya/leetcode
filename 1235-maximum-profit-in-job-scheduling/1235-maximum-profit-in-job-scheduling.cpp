@@ -5,7 +5,7 @@ public:
         if (dp[i] != -1) return dp[i];
         
         int j = i + 1;
-        while (j < N && jobs[j][0] < jobs[i][1]) ++j; // getting next possible jobs that can be done
+        while (j < N && jobs[j][0] < jobs[i][1]) ++j; // getting next possible job that can be done
         
         int I = jobs[i][2] + f(j, N, jobs, dp);
         int E = f(i + 1, N, jobs, dp);
