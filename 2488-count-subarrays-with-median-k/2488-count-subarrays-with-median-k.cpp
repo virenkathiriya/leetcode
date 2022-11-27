@@ -5,18 +5,18 @@ public:
         auto it = find(v.begin(), v.end(), k);
         int p = it - v.begin();
         
-        map<int, int> mp;
+        vector<int> f(2 * N + 1, 0);
         
         int b = 0;
         for (int i = p; i < N; ++i) {
             b += (v[i] == k) ? 0: ((v[i] > k) ? 1: -1);
-            mp[b]++;
+            f[b + N]++;
         }
         
         b = 0;
         for (int i = p; i >= 0; --i) {
             b += (v[i] == k) ? 0: ((v[i] > k) ? 1: -1);
-            ans += mp[-b] + mp[1 - b];
+            ans += f[N - b] + f[N + 1 - b];
         }
         
         return ans;
